@@ -1,7 +1,7 @@
 import Home from './Home'
 import Route2 from './Route2'
 
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
 
 const MainNav = createStackNavigator({
   Home: {

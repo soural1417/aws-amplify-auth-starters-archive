@@ -21,7 +21,8 @@ class SignIn extends React.Component {
       this.animatedValue,
       {
         toValue: 2,
-        duration: 2500
+        duration: 2500,
+        useNativeDriver: true,
       }
     ).start()
   }
