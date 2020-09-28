@@ -1,0 +1,49 @@
+type Blog @model @auth (
+    rules: [{ allow: owner }, { allow: private, operations: [read, update] }, { allow: public, operations: [read] }]) {
+  id: ID!
+  name: String!
+  posts: [Post] @connection(keyName: "byBlog", fields: ["id"])
+  follow: [Blog] @connection
+  people: User @connection(name:"FollowBlogs")
+}
+type Post @model @key(name: "byBlog", fields: ["blogID"]) @auth (rules: [{ allow: owner }, { allow: private, operations: [read] }, { allow: public, operations: [read] }]) {
+  id: ID!
+  title: String!
+  blogID: ID!
+  blog: Blog @connection(fields: ["blogID"])
+  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+  tags: [String!]!
+  createdOn: AWSDateTime!
+  updatedOn: AWSDateTime!
+  metadata: MetaData
+  status: Status
+}
+type MetaData {
+  category: Category
+}
+enum Category { 
+  comedy 
+  news 
+}
+enum Status {
+  complete
+  incomplete
+}
+type Comment @model @key(name: "byPost", fields: ["postID", "content"]) @auth (rules: [{ allow: private, operations: [read, create] }, { allow: public, operations: [read] }]) {
+  id: ID!
+  postID: ID!
+  post: Post @connection(fields: ["postID"])
+  content: String!
+}
+type User @model @auth (rules: [{ allow: owner }, { allow: private, operations: [read] }, { allow: public, operations: [read] }]) {
+    id: ID!
+    username: String
+    friends: [User] @connection
+    follow: [Blog] @connection(name:"FollowBlogs")
+    message: [Message] @connection
+  }
+type Message @model @auth (rules: [{ allow: owner }, { allow: private, operations: [read] }]) {
+  id: ID!
+  user: [User] @connection
+  text: String
+}

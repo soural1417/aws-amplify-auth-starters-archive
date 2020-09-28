@@ -1,7 +1,6 @@
 import React from 'react'
 import { css } from 'glamor'
 import { withRouter } from 'react-router-dom'
-
 import { Auth } from 'aws-amplify'
 
 class SignUp extends React.Component {
@@ -9,9 +8,13 @@ class SignUp extends React.Component {
     username: '',
     password: '',
     email: '',
-    phone_number: '',
     authCode: '',
-    showConfirmation: false
+    showConfirmation: false,
+    address: '',
+    birthdate: '',
+    picture: '',
+    gender: '',
+    phone_number: ''
   }
   onChange = (key, value) => {
     this.setState({
@@ -19,12 +22,16 @@ class SignUp extends React.Component {
     })
   }
   signUp = () => {
-    const { username, password, email, phone_number } = this.state
+    const { username, password, email, address, birthdate, picture, gender, phone_number } = this.state
     Auth.signUp({
       username,
       password,
       attributes: {
         email,
+        address,
+        picture,
+        birthdate,
+        gender,
         phone_number
       }
     })
@@ -44,9 +51,11 @@ class SignUp extends React.Component {
           !showConfirmation && (
             <div {...css(styles.formContainer)}>
               <h2 {...css(styles.signUpHeader)}>Sign Up</h2>
+              <input type="file" onChange={evt => this.onChange('picture', evt.target.value)}/>
               <input
                 {...css(styles.input)}
                 placeholder='Username'
+                type='text'
                 onChange={evt => this.onChange('username', evt.target.value)}
               />
               <input
@@ -58,6 +67,7 @@ class SignUp extends React.Component {
               <input
                 {...css(styles.input)}
                 placeholder='Email'
+                type='email'
                 onChange={evt => this.onChange('email', evt.target.value)}
               />
               <input
@@ -65,6 +75,25 @@ class SignUp extends React.Component {
                 placeholder='Phone Number'
                 onChange={evt => this.onChange('phone_number', evt.target.value)}
               />
+               <input
+                {...css(styles.input)}
+                placeholder='Address'
+                type='text'
+                onChange={evt => this.onChange('address', evt.target.value)}
+              />
+              <input type='date' onChange={evt => this.onChange('birthdate', evt.target.value)} />
+          <label>
+            <input type="radio" id="male" name="gender" value="male" onChange={evt => this.onChange('gender', evt.target.value)}/>
+            Male
+          </label>
+          <label>
+            <input type="radio" id="female" name="gender" value="female" onChange={evt => this.onChange('gender', evt.target.value)}/>
+            Female
+          </label>
+          <label>
+            <input type="radio" id="others" name="gender" value="others" onChange={evt => this.onChange('gender', evt.target.value)}/>
+            Others
+          </label>
               <div {...css(styles.button)} onClick={this.signUp}>
                 <p {...css(styles.buttonText)}>Sign Up</p>
               </div>
