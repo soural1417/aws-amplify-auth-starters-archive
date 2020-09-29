@@ -8,8 +8,9 @@ class Header extends React.Component {
         <img
           style={styles.amplifyLogo}
           src={require('./assets/amplifywhite.png')}
+          alt="img"
         />
-        <h2 {...css(styles.title)}>AWS Amplify Auth Starter</h2>
+        <h2 {...css(styles.title)}>Patreon</h2>
       </div>
     )
   }

@@ -17,7 +17,7 @@ class Home extends React.Component {
       console.log('user: ', user)
       this.setState({ user })
     })
-    Auth.currentUserInfo()
+    Auth.currentUserInfo() 
       .then(data => {
         this.setState({
           username: data.username
@@ -44,8 +44,8 @@ class Home extends React.Component {
   render() {
     return (
       <div>
+        <Linker />
         <h1>Welcome {this.state.username}</h1>
-        <Link to='/route1' label='route1'>Route 1</Link><br /><br /><br />
         <div {...css(styles.buttonContainer)}>
           <button
             onClick={this.addTTOP}
@@ -94,6 +94,7 @@ class Route1 extends React.Component {
   render() {
     return (
       <div>
+        <Linker />
         <h1>Route 1</h1>
         <Link to='/' label='route1'>Back</Link><br /><br /><br />
         <p onClick={() => {
@@ -103,6 +104,77 @@ class Route1 extends React.Component {
             })
             .catch(() => console.log('error signing out...'))
         }}>Sign Out</p>
+      </div>
+    )
+  }
+}
+
+class Blog extends React.Component {
+  render() {
+    return (
+      <div>
+        <Linker />
+        <h1>Blog</h1>
+      </div>
+    )
+  }
+}
+
+class Messages extends React.Component {
+  render() {
+    return (
+      <div>
+        <Linker />
+        <h1>Messages</h1>
+      </div>
+    )
+  }
+}
+
+class Settings extends React.Component {
+  render() {
+    return (
+      <div>
+        <Linker />
+        <h1>Settings</h1>
+      </div>
+    )
+  }
+}
+
+class Notifications extends React.Component {
+  render() {
+    return (
+      <div>
+        <Linker />
+        <h1>Notifications</h1>
+      </div>
+    )
+  }
+}
+
+class Profile extends React.Component {
+  render() {
+    return (
+      <div>
+        <Linker />
+        <h1>Profile</h1>
+      </div>
+    )
+  }
+}
+
+class Linker extends React.Component {
+  render() {
+    return (
+      <div style={{float:'left'}}>
+        <Link to='/' label='home'>Home</Link><br /><br /><br />
+        <Link to='/blog' label='blog'>Blog</Link><br /><br /><br />
+        <Link to='/messages' label='messages'>Messages</Link><br /><br /><br />
+        <Link to='/route1' label='route1'>Route 1</Link><br /><br /><br />
+        <Link to='/settings' label='settings'>Settings</Link><br /><br /><br />
+        <Link to='/notifications' label='messages'>Notifications</Link><br /><br /><br />
+        <Link to='/profile' label='profile'>Profile</Link><br /><br /><br />
       </div>
     )
   }
@@ -133,8 +205,18 @@ const styles = {
 
 Home = withRouter(Home)
 Route1 = withRouter(Route1)
+Blog = withRouter(Blog)
+Messages = withRouter(Messages)
+Settings = withRouter(Settings)
+Notifications = withRouter(Notifications)
+Profile = withRouter(Profile)
 
 export {
   Home,
-  Route1
+  Route1,
+  Blog,
+  Messages,
+  Settings,
+  Notifications,
+  Profile
 }

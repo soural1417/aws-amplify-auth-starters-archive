@@ -8,9 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Drawer = createDrawerNavigator();
-const Stack = createStackNavigator();
 const Stacka = createStackNavigator();
-const Stackb = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function MyStackk({navigation}) {
@@ -240,8 +238,8 @@ function MyTabs() {
 
 function MyStack({navigation}) {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
+    <Stacka.Navigator>
+      <Stacka.Screen
         name="Settings"
         component={Home}
         options={{
@@ -257,8 +255,8 @@ function MyStack({navigation}) {
           ),
         }}
       />
-      <Stack.Screen name="Route2" component={Route2} />
-    </Stack.Navigator>
+      <Stacka.Screen name="Route2" component={Route2} />
+    </Stacka.Navigator>
   );
 }
 
