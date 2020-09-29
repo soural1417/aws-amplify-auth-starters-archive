@@ -76,6 +76,48 @@ function MyStackkkk({navigation}) {
   );
 }
 
+function MyStackkkkk({navigation}) {
+  return (
+    <Stacka.Navigator>
+      <Stacka.Screen
+        name="Blogs"
+        component={Blogs}
+        options={{
+          headerLeft: () => (
+            <TouchableOpacity  onPress={() => navigation.openDrawer()} 
+            title="Info"><Image
+            source={require('./drawer.png')}
+            style={{ width: 25, height: 25, marginLeft: 15 }}
+          />
+            </TouchableOpacity>    
+          ),
+        }}
+      />
+    </Stacka.Navigator>
+  );
+}
+
+function MyStackkkkkk({navigation}) {
+  return (
+    <Stacka.Navigator>
+      <Stacka.Screen
+        name="Messages"
+        component={Messages}
+        options={{
+          headerLeft: () => (
+            <TouchableOpacity  onPress={() => navigation.openDrawer()} 
+            title="Info"><Image
+            source={require('./drawer.png')}
+            style={{ width: 25, height: 25, marginLeft: 15 }}
+          />
+            </TouchableOpacity>    
+          ),
+        }}
+      />
+    </Stacka.Navigator>
+  );
+}
+
 function Feed() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -100,6 +142,23 @@ function Notifications() {
   );
 }
 
+function Blogs() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Blogs!</Text>
+    </View>
+  );
+}
+
+function Messages() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Messages!</Text>
+    </View>
+  );
+}
+
+
 function MyTabs() {
   return (
     <Tab.Navigator
@@ -109,13 +168,39 @@ function MyTabs() {
       }}
     >
       <Tab.Screen
-        name="Feed"
+        name="Home"
         component={MyStackk}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: () => (
             <Image
-            source={require('./drawer.png')}
+            source={require('./home.png')}
+            style={{ width: 25, height: 25, marginLeft: 15 }}
+          />
+          ),
+        }}
+      />
+       <Tab.Screen
+        name="Messages"
+        component={MyStackkkkkk}
+        options={{
+          tabBarLabel: 'Messages',
+          tabBarIcon: () => (
+            <Image
+            source={require('./message.png')}
+            style={{ width: 25, height: 25, marginLeft: 15 }}
+          />
+          ),
+        }}
+      />
+            <Tab.Screen
+        name="Blogs"
+        component={MyStackkkkk}
+        options={{
+          tabBarLabel: 'Blogs',
+          tabBarIcon: () => (
+            <Image
+            source={require('./blog.png')}
             style={{ width: 25, height: 25, marginLeft: 15 }}
           />
           ),
@@ -125,10 +210,10 @@ function MyTabs() {
         name="Notifications"
         component={MyStackkk}
         options={{
-          tabBarLabel: 'Updates',
+          tabBarLabel: 'Notifications',
           tabBarIcon: () => (
             <Image
-            source={require('./drawer.png')}
+            source={require('./bell.png')}
             style={{ width: 25, height: 25, marginLeft: 15 }}
           />
           ),
@@ -141,12 +226,14 @@ function MyTabs() {
           tabBarLabel: 'Profile',
           tabBarIcon: () => (
             <Image
-            source={require('./drawer.png')}
+            source={require('./profile.png')}
             style={{ width: 25, height: 25, marginLeft: 15 }}
           />
           ),
         }}
       />
+           
+
     </Tab.Navigator>
   );
 }
@@ -155,7 +242,7 @@ function MyStack({navigation}) {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
+        name="Settings"
         component={Home}
         options={{
           headerLeft: () => (
