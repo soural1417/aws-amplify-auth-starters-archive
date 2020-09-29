@@ -11,17 +11,21 @@ class SignIn extends Component {
     email: '',
     phone_number: '',
     authCode: '',
-    stage: 0
+    stage: 0,
+    address: '',
+    birthdate: '',
+    gender: '',
+    picture: ''
   }
   onChangeText = (key, value) => {
     this.setState({ [key]: value })
   }
   signUp = async () => {
     const {
-      username, password, email, phone_number
+      username, password, email, phone_number, address, birthdate, gender, picture
     } = this.state
     try {
-      await Auth.signUp({ username, password, attributes: { email, phone_number }})
+      await Auth.signUp({ username, password, attributes: { email, phone_number, address, gender, birthdate, picture }})
       console.log('successful sign up..')
       this.setState({ stage: 1 })
     } catch (err) {
@@ -62,6 +66,16 @@ class SignIn extends Component {
               <Input
                 placeholder='Phone Number'
                 type='phone_number'
+                onChangeText={this.onChangeText}
+              />
+              <Input
+                placeholder='Address'
+                type='address'
+                onChangeText={this.onChangeText}
+              />
+              <Input
+                placeholder='Birth Date'
+                type='birthdate'
                 onChangeText={this.onChangeText}
               />
               <ActionButton
